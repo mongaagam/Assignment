@@ -57,8 +57,9 @@ s3://agam-csvstat/
 agam-csvstat/
 ├── input/
 │   └── file1_3.csv
-└── output/
-    └── csvstat_output.txt
+├── output/
+│   └── csvstat_output.txt
+└── csvstat_3.py
 ```
 
 ### Input File
@@ -276,6 +277,7 @@ The following screenshot shows the generated CSV statistics report from the Pyth
 ```text
 cloud/
 ├── README.md
+├── csvstat_3.py
 ├── input/
 │   └── file1_3.csv
 └── output/
