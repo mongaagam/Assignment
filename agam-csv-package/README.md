@@ -1,38 +1,54 @@
 # Agam CSV Package
 
-A simple Python package for reading, analyzing, and getting basic statistics from CSV files.
+A simple and lightweight Python package for reading CSV files and performing basic CSV analysis and statistics.
 
 ## Features
 
 * Read CSV files
 * Get the number of rows
 * Get the number of columns
-* Display column names
-* Detect column types
+* Check whether a value is numeric
+* Detect column data types
 * Check missing values
 * Calculate basic statistics for numerical columns
-* Find top values in text columns
+* Analyze text columns
 * Easy-to-use Python functions
+
+---
 
 ## Installation
 
-If the package is installed from PyPI:
+### Install from PyPI
 
 ```bash
-pip install agam
+pip install agam-csv-package
 ```
 
-For local development, clone the repository and install the package:
+### Install from Source
+
+Clone the repository:
 
 ```bash
 git clone <your-repository-url>
-cd agam
-pip install -e .
 ```
+
+Go to the project directory:
+
+```bash
+cd agam-csv-package
+```
+
+Install the package in editable mode:
+
+```bash
+python -m pip install -e .
+```
+
+---
 
 ## Example CSV
 
-Create a CSV file named `mydata.csv`:
+Create a CSV file such as `data.csv`:
 
 ```csv
 Name,Age,City
@@ -41,9 +57,11 @@ Anish,21,Mumbai
 Rahul,22,Chandigarh
 ```
 
+---
+
 ## Usage
 
-Import the package in Python:
+Import the package:
 
 ```python
 import agam
@@ -52,74 +70,125 @@ import agam
 ### Get Number of Rows
 
 ```python
-print(agam.rows("mydata.csv"))
+print(agam.rows("data.csv"))
 ```
 
 Example output:
 
 ```text
-3
+Rows: 5
 ```
 
 ### Get Number of Columns
 
 ```python
-print(agam.columns("mydata.csv"))
+print(agam.columns("data.csv"))
 ```
 
 Example output:
 
 ```text
-3
+Columns: 4
 ```
 
-### Get Column Names
+### Check if a Value is Numeric
 
 ```python
-print(agam.column_names("mydata.csv"))
+print(agam.is_numeric("25"))
 ```
 
 Example output:
 
 ```text
-['Name', 'Age', 'City']
+Is Numeric: True
 ```
+
+---
 
 ## CSV Analysis
 
-The package can also provide basic information about the CSV file, including:
+The package provides functions for basic CSV analysis, including:
 
-* Column names
-* Data types
-* Missing values
-* Missing-value percentage
-* Minimum value
-* Mean value
-* Maximum value
-* Top values for text columns
+* Row count
+* Column count
+* Numeric value detection
+* Column type detection
+* Missing-value information
+* Basic numerical statistics
+* Text-value analysis
 
-Example:
+You can use the available functions according to your requirements.
+
+---
+
+## Example
 
 ```python
-agam.analyze("mydata.csv")
+import agam
+
+print("Rows:", agam.rows("data.csv"))
+print("Columns:", agam.columns("data.csv"))
+print("Is Numeric:", agam.is_numeric("25"))
 ```
 
 Example output:
 
 ```text
-Column: Age
-Type: numeric
-Missing: 0
-Missing %: 0.0
-Min: 20.0
-Mean: 21.0
-Max: 22.0
-
-Column: City
-Type: text
-Missing: 0
-Missing %: 0.0
+Rows: 5
+Columns: 4
+Is Numeric: True
 ```
+
+---
+
+## Testing
+
+This project uses **pytest** for unit testing.
+
+### Install pytest
+
+```bash
+python -m pip install pytest
+```
+
+### Run Tests
+
+```bash
+python -m pytest -v
+```
+
+Example:
+
+```text
+test_csvstat.py::test_rows PASSED
+test_csvstat.py::test_columns PASSED
+test_csvstat.py::test_is_numeric PASSED
+test_csvstat.py::test_detect_type PASSED
+
+4 passed
+```
+
+---
+
+## Package Build
+
+The package can be built into Python distribution files.
+
+Build the package:
+
+```bash
+python -m build
+```
+
+The generated files will be available inside the `dist/` directory:
+
+```text
+dist/
+├── agam_csv_package-0.1.0-py3-none-any.whl
+└── agam_csv_package-0.1.0.tar.gz
+```
+
+---
 
 ## Project Structure
 
@@ -128,72 +197,65 @@ agam-csv-package/
 │
 ├── agam/
 │   ├── __init__.py
-│   └── csv_reader.py
+│   └── csvstat.py
 │
 ├── tests/
-│   └── test_csv.py
+│   └── test_csvstat.py
 │
-├── mydata.csv
+├── data.csv
 ├── README.md
 ├── pyproject.toml
-└── requirements.txt
+├── dist/
+│   ├── agam_csv_package-0.1.0-py3-none-any.whl
+│   └── agam_csv_package-0.1.0.tar.gz
+└── .gitignore
 ```
 
-## Testing
+### File Description
 
-The package uses `pytest` for testing.
+| File / Folder     | Purpose                                  |
+| ----------------- | ---------------------------------------- |
+| `agam/`           | Main Python package                      |
+| `csvstat.py`      | Contains CSV functions and logic         |
+| `__init__.py`     | Exposes package functions                |
+| `tests/`          | Contains unit tests                      |
+| `test_csvstat.py` | Tests the CSV functions                  |
+| `data.csv`        | Sample CSV data                          |
+| `pyproject.toml`  | Package configuration and build settings |
+| `README.md`       | Project documentation                    |
+| `dist/`           | Built package distributions              |
+| `.gitignore`      | Files ignored by Git                     |
 
-Install pytest:
-
-```bash
-pip install pytest
-```
-
-Run the tests:
-
-```bash
-pytest
-```
-
-## Requirements
-
-* Python 3.x
-* pytest (for testing)
+---
 
 ## Development
 
-For local development, install the package in editable mode:
+For development, install the package in editable mode:
 
 ```bash
-pip install -e .
+python -m pip install -e .
 ```
 
-This allows you to modify the source code and test the changes without reinstalling the package.
+After making changes, run the tests:
 
-# Agam CSV Package
+```bash
+python -m pytest -v
+```
 
-## Features
+Build the package:
 
-## Installation
+```bash
+python -m build
+```
 
-## Usage
-
-
-## Example CSV
-
-
-## Output
-
-
-## Testing
-
-
-## Package Build
-
-
-## Project Structure
+---
 
 
 ## License
 
-This project is created for learning and educational purposes.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions
