@@ -1,1 +1,4 @@
 venv/
+.ipynb_checkpoints/
+agam-csv-package/build/
+week2-eda/data/
